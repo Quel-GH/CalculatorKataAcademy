@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class CalculatorMain {
 
     public static void main(String[] args) {
-        System.out.println("Введите выражение для вычисления. Допуступные арифметические действия: + - * / (a+b)(III*V) \n" +
+        System.out.println("Введите выражение для вычисления. Доступные арифметические действия: + - * / (a+b)(III*V) \n" +
                 "Числа могут быть либо арабскими, либо римскими, но не больше 10(X)");
         Scanner in = new Scanner(System.in);
         System.out.println(calc(in.nextLine()));

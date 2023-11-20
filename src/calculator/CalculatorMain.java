@@ -32,7 +32,13 @@ public class CalculatorMain {
                 if(isRomanNumber(input.charAt(i))) {
                     roman = true;
                 }else {
-                    return "Разрешено вводить только арабские, либо римские числа";
+                    try {
+                        throw new Exception();
+                    } catch (Exception e) {
+                        System.out.println("Разрешено вводить только арабские, либо римские числа");
+                        break;
+                    }
+//                    return "Разрешено вводить только арабские, либо римские числа";
                 }
             }
 
@@ -40,12 +46,22 @@ public class CalculatorMain {
                input.charAt(i) == '*' || input.charAt(i) == '/'){
                 operationCount++;
                 operationCharAt = i;
-                if(operationCount > 1) return "Разрешено только одно арифметическое действие";
+                if(operationCount > 1) try {
+                    throw new Exception();
+                } catch (Exception e) {
+                    System.out.println("Разрешено только одно арифметическое действие");
+                }
+//                if(operationCount > 1) return "Разрешено только одно арифметическое действие";
             }
         }
 
         if(arabic == true & roman == true)
-            return "Одновременно можно использовать только арабские, либо римские числа";
+            try {
+                throw new Exception();
+            } catch (Exception e) {
+                System.out.println("Одновременно можно использовать только арабские, либо римские числа");
+            }
+//            return "Одновременно можно использовать только арабские, либо римские числа";
 
         if(operationCharAt != 0 & !input.substring(operationCharAt + 1).equals("")) {
 
@@ -55,7 +71,13 @@ public class CalculatorMain {
             if (arabic == true) {
 // -----------------Запрет на использование чисел больше 10------------------
                 if(Integer.valueOf(leftFromOperation) > 10 || Integer.valueOf(rightFromOperation) > 10)
-                    return "Разрешено использовать числа не больше 10(X)";
+
+                    try {
+                        throw new Exception();
+                    } catch (Exception e) {
+                        System.out.println("Разрешено использовать числа не больше 10(X)");
+                    }
+//                    return "Разрешено использовать числа не больше 10(X)";
 //------------------Убрать эту часть !!!В ДВУХ МЕСТАХ!!!, чтобы использовать все числа---------------------------
                 switch (input.charAt(operationCharAt)){
                     case ('+'): answer =
@@ -78,15 +100,25 @@ public class CalculatorMain {
                 int romanRightFromOperation = romanNumberConverter.romanToInt(rightFromOperation);
 // -----------------Запрет на использование чисел больше 10------------------
                 if(romanLeftFromOperation > 10 || romanRightFromOperation > 10)
-                    return "Разрешено использовать числа не больше 10(X)";
+                    try {
+                        throw new Exception();
+                    } catch (Exception e) {
+                        System.out.println("Разрешено использовать числа не больше 10(X)");
+                    }
+//                    return "Разрешено использовать числа не больше 10(X)";
 //------------------Убрать эту часть !!!В ДВУХ МЕСТАХ!!!, чтобы использовать все числа---------------------------
                 switch (input.charAt(operationCharAt)){
                     case ('+'): answer =
                             romanNumberConverter.toRoman(romanLeftFromOperation + romanRightFromOperation);
                         break;
-                    case ('-'): answer =
-                            "В римской системе нет отрицательных чисел";
-                        break;
+
+                    case ('-'): try {
+                            throw new Exception();
+                        } catch (Exception e) {
+                            System.out.println("В римской системе нет отрицательных чисел");
+                        }
+//                    case ('-'): answer =
+//                            "В римской системе нет отрицательных чисел";
                     case ('*'): answer =
                             romanNumberConverter.toRoman(romanLeftFromOperation * romanRightFromOperation);
                         break;
@@ -97,7 +129,13 @@ public class CalculatorMain {
             }
             return answer;
         } else {
-            return "Введите выражение корректно. Пример:(A+B)/(V*III)";
+            try {
+                throw new Exception();
+            } catch (Exception e) {
+                System.out.println("Введите выражение корректно. Пример:(A+B)/(V*III)");
+                throw new ArithmeticException();
+            }
+//            return "Введите выражение корректно. Пример:(A+B)/(V*III)";
         }
     }
 
